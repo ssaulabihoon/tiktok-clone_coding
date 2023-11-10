@@ -1,29 +1,57 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/authentication/email_screen.dart';
 import 'package:tiktok_clone/features/authentication/login_screen.dart';
 import 'package:tiktok_clone/features/authentication/username_screen.dart';
 import 'package:tiktok_clone/features/authentication/widgets/auth_button.dart';
 import 'package:tiktok_clone/utils.dart';
 
 class SignUpScreen extends StatelessWidget {
+  static const routeURL = "/";
+  static String routeName = "singUp";
   const SignUpScreen({super.key});
 
   void _onLoginTap(BuildContext context) async {
-    final result = await Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const LoginScreen(),
-      ),
-    );
+    context.push(LoginScreen.routeName);
+    // final result = await Navigator.of(context).push(
+    //   MaterialPageRoute(
+    //     builder: (context) => const LoginScreen(),
+    //   ),
+    // );
   }
 
-  void _onUserTap(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const UsernameScreen(),
-      ),
-    );
+  void _onEmailTap(BuildContext context) {
+    context.pushNamed(UsernameScreen.routeName);
+    // Navigator.of(context).push(
+    //   PageRouteBuilder(
+    //     transitionDuration: const Duration(seconds: 1),
+    //     reverseTransitionDuration: const Duration(seconds: 1),
+    //     pageBuilder: (context, animation, secondaryAnimation) =>
+    //         const UsernameScreen(),
+    //     transitionsBuilder: (context, animation, secondaryAnimation, child) {
+    //       final offsetAnimation = Tween(
+    //         begin: const Offset(0, -1),
+    //         end: Offset.zero,
+    //       ).animate(animation);
+
+    //       final opacityAnimation = Tween(
+    //         begin: 0.5,
+    //         end: 1.0,
+    //       ).animate(animation);
+
+    //       return SlideTransition(
+    //         position: offsetAnimation,
+    //         child: FadeTransition(
+    //           opacity: opacityAnimation,
+    //           child: child,
+    //         ),
+    //       );
+    //     },
+    //   ),
+    // );
   }
 
   @override
@@ -64,7 +92,7 @@ class SignUpScreen extends StatelessWidget {
                   Gaps.v40,
                   if (orientation == Orientation.portrait) ...[
                     GestureDetector(
-                      onTap: () => _onUserTap(context),
+                      onTap: () => _onEmailTap(context),
                       child: const AuthButton(
                         icon: FaIcon(FontAwesomeIcons.user),
                         text: "Use email & Password",
@@ -81,7 +109,7 @@ class SignUpScreen extends StatelessWidget {
                       children: [
                         Expanded(
                           child: GestureDetector(
-                            onTap: () => _onUserTap(context),
+                            onTap: () => _onEmailTap(context),
                             child: const AuthButton(
                               icon: FaIcon(FontAwesomeIcons.user),
                               text: "Use email & Password",
