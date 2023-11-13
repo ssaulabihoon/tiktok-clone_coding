@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/widgets/form_button.dart';
@@ -35,12 +36,9 @@ class _BirthDayScreenState extends State<BirthDayScreen> {
   }
 
   void _onNextTap() {
-    Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(
-        builder: (context) => const InterestsScreen(),
-      ),
-      (route) => false,
-    );
+    // push는 하지만 이전화면으로 돌아갈 수 없음.
+    context.pushReplacementNamed(InterestsScreen.routeName);
+    // context.goNamed(InterestsScreen.routeName);을 해도 위와 동일한 결과가 나온다.
   }
 
   void _setTextFieldDate(DateTime date) {

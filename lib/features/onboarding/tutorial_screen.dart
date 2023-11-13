@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
-import 'package:tiktok_clone/features/main_navigation/main_navigation_screen.dart';
+import 'package:tiktok_clone/common/widgets/main_navigation/main_navigation_screen.dart';
 import 'package:tiktok_clone/utils.dart';
 
 enum Direction { right, left }
@@ -45,12 +46,9 @@ class _TutorialScreenState extends State<TutorialScreen> {
   }
 
   void _onEnterAppTap() {
-    Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(
-        builder: (context) => const MainNavigationScreen(),
-      ),
-      (route) => false,
-    );
+    // push는 스택을 쌓는다. push를 하면 pop을 할 수 있음.
+    // go는 경로가 바뀌면서 스택에 추가되는게 아닌 스택이 교체되는 거임.
+    context.go("/home");
   }
 
   @override
