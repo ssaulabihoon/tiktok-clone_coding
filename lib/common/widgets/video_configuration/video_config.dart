@@ -1,50 +1,13 @@
 import 'package:flutter/material.dart';
 
-class VideoConfigData extends InheritedWidget {
-  final bool autoMute;
+/* ChangeNotifier */
+class VideoConfig extends ChangeNotifier {
+  bool autoMuted = false;
 
-  final void Function() toggleMuted;
-
-  const VideoConfigData({
-    super.key,
-    required super.child,
-    required this.toggleMuted,
-    required this.autoMute,
-  });
-
-  static VideoConfigData of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<VideoConfigData>()!;
-  }
-
-  @override
-  bool updateShouldNotify(covariant InheritedWidget oldWidget) {
-    return true;
+  void toggleAutoMute() {
+    autoMuted = !autoMuted;
+    notifyListeners();
   }
 }
 
-class VideoConfig extends StatefulWidget {
-  final Widget child;
-  const VideoConfig({super.key, required this.child});
-
-  @override
-  State<VideoConfig> createState() => _VideoConfigState();
-}
-
-class _VideoConfigState extends State<VideoConfig> {
-  bool autoMute = false;
-
-  void toggleMuted() {
-    setState(() {
-      autoMute = !autoMute;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return VideoConfigData(
-      toggleMuted: toggleMuted,
-      autoMute: autoMute,
-      child: widget.child,
-    );
-  }
-}
+final videoConfig = VideoConfig();
