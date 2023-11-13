@@ -2,12 +2,17 @@ import 'package:flutter/material.dart';
 
 /* ChangeNotifier */
 class VideoConfig extends ChangeNotifier {
-  bool autoMuted = false;
+  bool isMute = false;
+  bool isAutoplay = false;
 
-  void toggleAutoMute() {
-    autoMuted = !autoMuted;
+  void toggleIsMuted() {
+    isMute = !isMute;
+    notifyListeners();
+  }
+
+  void toggleAutoplay() {
+    isAutoplay = !isAutoplay;
     notifyListeners();
   }
 }
-
-final videoConfig = VideoConfig();
+/* final videoConfig = ValueNotifier(false) */
