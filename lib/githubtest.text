@@ -35,3 +35,14 @@ Router Part One!
 /inbox -> inbox
 /profile -> profile
 --------------------------------
+
+MVVM 
+Model View ViewModel Architecture
+
+MVVM <> Provider <> Flutter
+
+View = 사용자에게 이벤트를 받는 부분, UI 
+ViewModel = Data와 사용자를 연결
+
+
+---------------
