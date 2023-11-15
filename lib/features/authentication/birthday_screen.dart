@@ -1,19 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/authentication/view_models/signup_vm.dart';
 import 'package:tiktok_clone/features/authentication/widgets/form_button.dart';
 import 'package:tiktok_clone/features/onboarding/interests_screen.dart';
 
-class BirthDayScreen extends StatefulWidget {
+class BirthDayScreen extends ConsumerStatefulWidget {
   const BirthDayScreen({super.key});
 
   @override
-  State<BirthDayScreen> createState() => _BirthDayScreenState();
+  BirthDayScreenState createState() => BirthDayScreenState();
 }
 
-class _BirthDayScreenState extends State<BirthDayScreen> {
+class BirthDayScreenState extends ConsumerState<BirthDayScreen> {
   final TextEditingController _birthdayController = TextEditingController();
 
   DateTime initialDate = DateTime.now();
@@ -36,8 +38,9 @@ class _BirthDayScreenState extends State<BirthDayScreen> {
   }
 
   void _onNextTap() {
+    ref.read(signUpProvider.notifier).signUp(context);
     // push는 하지만 이전화면으로 돌아갈 수 없음.
-    context.pushReplacementNamed(InterestsScreen.routeName);
+    // context.pushReplacementNamed(InterestsScreen.routeName);
     // context.goNamed(InterestsScreen.routeName);을 해도 위와 동일한 결과가 나온다.
   }
 
@@ -95,11 +98,12 @@ class _BirthDayScreenState extends State<BirthDayScreen> {
             ),
             Gaps.v28,
             GestureDetector(
-                onTap: _onNextTap,
-                child: const FormButton(
-                  disabled: false,
-                  text: "Next",
-                ))
+              onTap: _onNextTap,
+              child: FormButton(
+                disabled: ref.watch(signUpProvider).isLoading,
+                text: "Next",
+              ),
+            ),
           ],
         ),
       ),
