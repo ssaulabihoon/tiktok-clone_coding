@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gallery_saver/gallery_saver.dart';
-import 'package:tiktok_clone/features/videos/view_models/timeline_vm.dart';
 import 'package:tiktok_clone/features/videos/view_models/upload_video_vm.dart';
 import 'package:video_player/video_player.dart';
 
@@ -33,9 +32,7 @@ class VideoPreviewScreenState extends ConsumerState<VideoPreviewScreen> {
     );
 
     await _videoPlayerController.initialize();
-
     await _videoPlayerController.setLooping(true);
-
     await _videoPlayerController.play();
 
     setState(() {});
@@ -44,7 +41,6 @@ class VideoPreviewScreenState extends ConsumerState<VideoPreviewScreen> {
   @override
   void initState() {
     super.initState();
-
     _initVideo();
   }
 
