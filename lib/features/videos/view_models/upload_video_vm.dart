@@ -10,7 +10,7 @@ import 'package:tiktok_clone/features/videos/models/video_model.dart';
 import 'package:tiktok_clone/features/videos/repos/videos_repo.dart';
 
 class UploadVideoViewModel extends AsyncNotifier<void> {
-  late final VideoRepository _repository;
+  late final VideosRepository _repository;
   @override
   FutureOr<void> build() {
     _repository = ref.read(videoRepo);
@@ -30,6 +30,7 @@ class UploadVideoViewModel extends AsyncNotifier<void> {
           if (task.metadata != null) {
             await _repository.saveVideo(
               VideoModel(
+                id: "",
                 title: "From Flutter!!",
                 description: "Hell yeah!!!",
                 fileUrl: await task.ref.getDownloadURL(),
