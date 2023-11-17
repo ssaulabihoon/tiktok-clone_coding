@@ -636,7 +636,7 @@ PODS:
   - BoringSSL-GRPC/Interface (0.0.24)
   - camera_avfoundation (0.0.1):
     - Flutter
-  - cloud_firestore (4.13.0):
+  - cloud_firestore (4.13.1):
     - Firebase/Firestore (= 10.17.0)
     - firebase_core
     - Flutter
@@ -656,15 +656,22 @@ PODS:
   - Firebase/Functions (10.17.0):
     - Firebase/CoreOnly
     - FirebaseFunctions (~> 10.17.0)
+  - Firebase/Messaging (10.17.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 10.17.0)
   - Firebase/Storage (10.17.0):
     - Firebase/CoreOnly
     - FirebaseStorage (~> 10.17.0)
-  - firebase_auth (4.13.0):
+  - firebase_auth (4.14.0):
     - Firebase/Auth (= 10.17.0)
     - firebase_core
     - Flutter
   - firebase_core (2.22.0):
     - Firebase/CoreOnly (= 10.17.0)
+    - Flutter
+  - firebase_messaging (14.7.4):
+    - Firebase/Messaging (= 10.17.0)
+    - firebase_core
     - Flutter
   - firebase_storage (11.5.1):
     - Firebase/Storage (= 10.17.0)
@@ -714,6 +721,20 @@ PODS:
     - FirebaseMessagingInterop (~> 10.0)
     - FirebaseSharedSwift (~> 10.0)
     - GTMSessionFetcher/Core (< 4.0, >= 2.1)
+  - FirebaseInstallations (10.18.0):
+    - FirebaseCore (~> 10.0)
+    - GoogleUtilities/Environment (~> 7.8)
+    - GoogleUtilities/UserDefaults (~> 7.8)
+    - PromisesObjC (~> 2.1)
+  - FirebaseMessaging (10.17.0):
+    - FirebaseCore (~> 10.0)
+    - FirebaseInstallations (~> 10.0)
+    - GoogleDataTransport (~> 9.2)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
+    - GoogleUtilities/Environment (~> 7.8)
+    - GoogleUtilities/Reachability (~> 7.8)
+    - GoogleUtilities/UserDefaults (~> 7.8)
+    - nanopb (< 2.30910.0, >= 2.30908.0)
   - FirebaseMessagingInterop (10.18.0)
   - FirebaseSharedSwift (10.18.0)
   - FirebaseStorage (10.17.0):
@@ -725,6 +746,10 @@ PODS:
   - Flutter (1.0.0)
   - gallery_saver (0.0.1):
     - Flutter
+  - GoogleDataTransport (9.2.5):
+    - GoogleUtilities/Environment (~> 7.7)
+    - nanopb (< 2.30910.0, >= 2.30908.0)
+    - PromisesObjC (< 3.0, >= 1.2)
   - GoogleUtilities/AppDelegateSwizzler (7.12.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -739,6 +764,8 @@ PODS:
     - GoogleUtilities/Reachability
   - "GoogleUtilities/NSData+zlib (7.12.0)"
   - GoogleUtilities/Reachability (7.12.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (7.12.0):
     - GoogleUtilities/Logger
   - "gRPC-C++ (1.49.1)":
     - "gRPC-C++/Implementation (= 1.49.1)"
@@ -830,6 +857,7 @@ DEPENDENCIES:
   - cloud_functions (from `.symlinks/plugins/cloud_functions/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
+  - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - firebase_storage (from `.symlinks/plugins/firebase_storage/ios`)
   - Flutter (from `Flutter`)
   - gallery_saver (from `.symlinks/plugins/gallery_saver/ios`)
@@ -853,9 +881,12 @@ SPEC REPOS:
     - FirebaseFirestore
     - FirebaseFirestoreInternal
     - FirebaseFunctions
+    - FirebaseInstallations
+    - FirebaseMessaging
     - FirebaseMessagingInterop
     - FirebaseSharedSwift
     - FirebaseStorage
+    - GoogleDataTransport
     - GoogleUtilities
     - "gRPC-C++"
     - gRPC-Core
@@ -876,6 +907,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_auth/ios"
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
+  firebase_messaging:
+    :path: ".symlinks/plugins/firebase_messaging/ios"
   firebase_storage:
     :path: ".symlinks/plugins/firebase_storage/ios"
   Flutter:
@@ -897,11 +930,12 @@ SPEC CHECKSUMS:
   abseil: 926fb7a82dc6d2b8e1f2ed7f3a718bce691d1e46
   BoringSSL-GRPC: 3175b25143e648463a56daeaaa499c6cb86dad33
   camera_avfoundation: 3125e8cd1a4387f6f31c6c63abb8a55892a9eeeb
-  cloud_firestore: d76c02bf5967dc9131ab42fcc1088d0873581e28
+  cloud_firestore: c0e21891b99d3ac3d91abfe476ac88830a7c9939
   cloud_functions: 5a8a98b2037ff2b57cac56155faede7417d24de9
   Firebase: f4ac0b02927af9253ae094d23deecf0890da7374
-  firebase_auth: 8b51489f374ea36b8f0aac047738de1d1f02e573
+  firebase_auth: 6a41305f668ac6f9bcbefdedfcba5aacb8367e92
   firebase_core: efc9455611b8769fa90fbdae5da182600bd6901c
+  firebase_messaging: 9c697d1ecfe77edf15d995b5048906ffc994c96c
   firebase_storage: c10cf9a1c953d6cb41873c735f3740c43111b3c4
   FirebaseAppCheckInterop: 3cd914842ba46f4304050874cd284de82f154ffd
   FirebaseAuth: 8d285d9f6e39cc8e23be53a4edd83a923ea629d8
@@ -912,11 +946,14 @@ SPEC CHECKSUMS:
   FirebaseFirestore: 67e8c2dc613a86f056cc0037569f2aaee7dbf5fe
   FirebaseFirestoreInternal: 3d5d03f2447caae64311d2cda92abbf4ec5241be
   FirebaseFunctions: c6894e60efe40af356a800c39c501136e6565a51
+  FirebaseInstallations: e842042ec6ac1fd2e37d7706363ebe7f662afea4
+  FirebaseMessaging: 1367b28c0c83a63072af4a711328fcc2e6899902
   FirebaseMessagingInterop: e4ff7139aad39ab9149ae6462828ed3b8cdaa86c
   FirebaseSharedSwift: 62e248642c0582324d0390706cadd314687c116b
   FirebaseStorage: 4af6f9ea67b6a8e4e3cbd75e006b4776a50e8b12
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   gallery_saver: 9fc173c9f4fcc48af53b2a9ebea1b643255be542
+  GoogleDataTransport: 54dee9d48d14580407f8f5fbf2f496e92437a2f2
   GoogleUtilities: 0759d1a57ebb953965c2dfe0ba4c82e95ccc2e34
   "gRPC-C++": 2df8cba576898bdacd29f0266d5236fa0e26ba6a
   gRPC-Core: a21a60aefc08c68c247b439a9ef97174b0c54f96
@@ -929,8 +966,8 @@ SPEC CHECKSUMS:
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
   shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
-  video_player_avfoundation: 8563f13d8fc8b2c29dc2d09e60b660e4e8128837
+  video_player_avfoundation: e9e6f9cae7d7a6d9b43519b0aab382bca60fcfd1
 
-PODFILE CHECKSUM: 4396d6bf28df262ce6838b66018c375846ebecf5
+PODFILE CHECKSUM: 24168f4c1ac5e15b7ca8ff13c65f3a72d5bc29ba
 
 COCOAPODS: 1.14.2

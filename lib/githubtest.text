@@ -52,3 +52,7 @@ Provider의 버전2라고 생각하면 됨.
 
 -----------
 Firebase
+-------
+foreground -> 어플 실행이 되어 있으며, 화면인 상태
+background -> 어플 실행이 되어 있으며, 화면이 꺼져있는 상태
+terminated -> 어플 종료

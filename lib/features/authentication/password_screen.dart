@@ -6,7 +6,6 @@ import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/birthday_screen.dart';
 import 'package:tiktok_clone/features/authentication/view_models/signup_vm.dart';
 import 'package:tiktok_clone/features/authentication/widgets/form_button.dart';
-import 'package:tiktok_clone/features/onboarding/interests_screen.dart';
 
 class PasswordScreen extends ConsumerStatefulWidget {
   const PasswordScreen({super.key});

@@ -26,5 +26,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:16017087609:ios:983ce5f7e32b3400a708a8</string>
+	<key>DATABASE_URL</key>
+	<string>https://tiktok-clonecoding-ian-default-rtdb.asia-southeast1.firebasedatabase.app</string>
 </dict>
 </plist>
