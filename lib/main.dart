@@ -28,6 +28,7 @@ void main() async {
   final preferences = await SharedPreferences.getInstance();
   final repository = VideoPlaybackConfigRepository(preferences);
 
+// Riverpod을 사용하기 위해 app을 ProviderScope로 감싸줘야 한다.
   runApp(
     ProviderScope(
       overrides: [
